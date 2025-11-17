@@ -1,0 +1,162 @@
+{
+  "sessions": [
+    {
+      "session": "2025-26  (Current)",
+      "label": "Current Executive Committee",
+      "members": [
+        {
+          "name": "Faisal Ahmed",
+          "role": "President",
+          "batch": "CSE — 4th",
+          "email": "ayesha@example.org",
+          "img": "/img/members/executive-members/1.webp",
+          "bio": "Leads club strategy and contests. Interests: web, ML, leadership.",
+          "socials": { "linkedin": "https://linkedin.com", "github": "https://github.com" }
+        },
+        {
+          "name": "Abdullah Bin Ziad",
+          "role": "Vice President",
+          "batch": "CSE 4th",
+          "email": "sabbir@example.org",
+          "img": "/img/members/executive-members/2.webp",
+          "bio": "Coordinates events and workshops. Robotics and embedded enthusiast.",
+          "socials": { "facebook": "https://facebook.com", "linkedin": "https://linkedin.com" }
+        },
+        {
+          "name": "Hossain Bin Said",
+          "role": "Secratary general",
+          "batch": "CSE 4th",
+          "email": "nusrat@example.org",
+          "img": "/img/members/executive-members/3.webp",
+          "bio": "Manages club finance. Loves data viz and Python.",
+          "socials": { "github": "https://github.com", "twitter": "https://twitter.com" }
+        },
+        {
+          "name": "Md Sazid Al Hasan",
+          "role": "Joint Secretary",
+          "batch": "CSE 5th",
+          "email": "mahmudul@example.org",
+          "img": "/img/members/executive-members/4.webp",
+          "bio": "Leads project squads. Interested in mobile apps and UI/UX.",
+          "socials": { "linkedin": "https://linkedin.com" }
+        },
+        {
+          "name": "Estiak Ahammed",
+          "role": "Organizing Secretary",
+          "batch": "CSE 5th",
+          "email": "mahmudul@example.org",
+          "img": "/img/members/executive-members/5.webp",
+          "bio": "Leads project squads. Interested in mobile apps and UI/UX.",
+          "socials": { "linkedin": "https://linkedin.com" }
+        },
+        {
+          "name": "Tawhid Ahmmed",
+          "role": "Creative $ Media Executive",
+          "batch": "CSE 5th",
+          "email": "mahmudul@example.org",
+          "img": "/img/members/executive-members/6.webp",
+          "bio": "Leads project squads. Interested in mobile apps and UI/UX.",
+          "socials": { "linkedin": "https://linkedin.com" }
+        },
+        {
+          "name": "Dween Mohammad",
+          "role": "Event Co-Ordinator",
+          "batch": "CSE 5th",
+          "email": "mahmudul@example.org",
+          "img": "/img/members/executive-members/7.webp",
+          "bio": "Leads project squads. Interested in mobile apps and UI/UX.",
+          "socials": { "linkedin": "https://linkedin.com" }
+        },
+        {
+          "name": "Md Nasir Ahmed",
+          "role": "Finance Secretary",
+          "batch": "CSE 5th",
+          "email": "mahmudul@example.org",
+          "img": "/img/members/executive-members/8.webp",
+          "bio": "Leads project squads. Interested in mobile apps and UI/UX.",
+          "socials": { "linkedin": "https://linkedin.com" }
+        },
+        {
+          "name": "Abdullah Zubayer Talukdar",
+          "role": "Resource & Logistics Manager",
+          "batch": "CSE 5th",
+          "email": "mahmudul@example.org",
+          "img": "/img/members/executive-members/9.webp",
+          "bio": "Leads project squads. Interested in mobile apps and UI/UX.",
+          "socials": { "linkedin": "https://linkedin.com" }
+        },
+        {
+          "name": "MD Robiulah",
+          "role": "Public Relation Executive",
+          "batch": "CSE 5th",
+          "email": "mahmudul@example.org",
+          "img": "/img/members/executive-members/10.webp",
+          "bio": "Leads project squads. Interested in mobile apps and UI/UX.",
+          "socials": { "linkedin": "https://linkedin.com" }
+        },
+        {
+          "name": "Asadullah Islam joy",
+          "role": "Web Administrator",
+          "batch": "CSE 4th",
+          "email": "mahmudul@example.org",
+          "img": "/img/members/executive-members/11.webp",
+          "bio": "Leads project squads. Interested in mobile apps and UI/UX.",
+          "socials": { "linkedin": "https://linkedin.com" }
+        },
+        {
+          "name": "Md. Fahim Hossain Abir",
+          "role": "Executive Member",
+          "batch": "CSE 6th",
+          "email": "mahmudul@example.org",
+          "img": "/img/members/executive-members/12.webp",
+          "bio": "Leads project squads. Interested in mobile apps and UI/UX.",
+          "socials": { "linkedin": "https://linkedin.com" }
+        },
+        {
+          "name": "Akram Hossen",
+          "role": "Executive Member",
+          "batch": "CSE 6th",
+          "email": "mahmudul@example.org",
+          "img": "/img/members/executive-members/13.webp",
+          "bio": "Leads project squads. Interested in mobile apps and UI/UX.",
+          "socials": { "linkedin": "https://linkedin.com" }
+        },
+        {
+          "name": "Md. Shahriyar Ahammed Joy",
+          "role": "Executive Member",
+          "batch": "CSE 6th",
+          "email": "mahmudul@example.org",
+          "img": "/img/members/executive-members/14.webp",
+          "bio": "Leads project squads. Interested in mobile apps and UI/UX.",
+          "socials": { "linkedin": "https://linkedin.com" }
+        },
+        {
+          "name": "Maisha Mubashshira",
+          "role": "Executive Member",
+          "batch": "CSE 6th",
+          "email": "mahmudul@example.org",
+          "img": "/img/members/executive-members/15.webp",
+          "bio": "Leads project squads. Interested in mobile apps and UI/UX.",
+          "socials": { "linkedin": "https://linkedin.com" }
+        }
+      ]
+    },
+    {
+      "session": "2024-25",
+      "label": "Executive Committee",
+      "members": [ ]
+    },
+    {
+      "session": "2023-24 ",
+      "label": " Executive Committee",
+      "members": [ ]
+    },
+    {
+      "session": "2022-23 ",
+      "label": " Executive Committee",
+      "members": []
+    }
+  
+  ]
+}
+

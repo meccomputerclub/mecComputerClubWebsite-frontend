@@ -1,0 +1,39 @@
+[
+  {
+    "id": "intra-mec-contest-2025-announcement",
+    "title": "Intra MEC Programming Contest 2025 — Announcement",
+    "category": "Events",
+    "date": "2025-11-20",
+    "excerpt": "Get ready for the biggest coding showdown at MEC! Registration opens soon with multiple tracks and exciting prizes.",
+    "image": "/img/events/contest-nov2024/1.jpg",
+    "content": "We are excited to announce the Intra MEC Programming Contest 2025. The contest will feature beginner and advanced tracks, team and solo categories, and problem sets designed by our mentors..."
+  },
+  {
+    "id": "robotics-workshop-recap",
+    "title": "Hands-on Robotics Workshop — Recap",
+    "category": "Workshops",
+    "date": "2025-10-15",
+    "excerpt": "A quick recap of our robotics workshop covering sensors, actuators, and line-following logic.",
+    "image": "/img/events/contest-nov2024/2.jpg",
+    "content": "We covered Arduino basics, motor drivers, IR sensors, and control loops. Teams built and tuned simple line-following robots..."
+  },
+  {
+    "id": "llm-study-circle",
+    "title": "LLM Study Circle — Kickoff",
+    "category": "AI/ML",
+    "date": "2025-10-01",
+    "excerpt": "We kicked off our LLM study circle. Here’s the reading list and project ideas for the semester.",
+    "image": "/img/events/contest-nov2024/3.jpg",
+    "content": "We will explore tokenizer mechanics, attention, fine-tuning, and evaluation with small open-source models. Projects include dataset curation and prompt tooling..."
+  },
+  {
+    "id": "project-campus-navigator",
+    "title": "Project Spotlight: Campus Navigator App",
+    "category": "Projects",
+    "date": "2025-09-12",
+    "excerpt": "A student-built app to navigate campus facilities with offline maps and quick search.",
+    "image": "/img/events/contest-nov2024/4.jpg",
+    "content": "The app features wayfinding, searchable POIs, and offline caching. Built with React Native and Maplibre..."
+  }
+]
+
