@@ -1,11 +1,11 @@
 [
   {
     "id": "intra-mec-2025",
-    "title": "Intra MEC Programming Contest 2025",
+    "title": "MEC Intra College Programming Contest 2025",
     "description": "Annual programming competition open to all MEC students. Compete in algorithmic problem-solving and coding challenges.",
-    "date": "2025-12-20",
+    "date": "2025-12-02",
     "time": "09:00 AM - 05:00 PM",
-    "location": "MEC Computer Lab, Building A",
+    "location": "Department of CSE",
     "category": "Competition",
     "image": "/img/events/contest-nov2024/1.jpg",
     "href": "/events/upcoming",
@@ -13,7 +13,7 @@
     "registrationOpen": true,
     "maxParticipants": 100
   },
-  {
+   {
     "id": "robotics-workshop",
     "title": "Hands-on Robotics Workshop",
     "description": "Learn the fundamentals of robotics, build your first robot, and explore sensors, actuators, and programming.",
@@ -40,20 +40,6 @@
     "status": "upcoming",
     "registrationOpen": true,
     "maxParticipants": 50
-  },
-  {
-    "id": "web-bootcamp",
-    "title": "Programming Contest 2025",
-    "description": "Intensive 3-day bootcamp covering React, Next.js, APIs, and modern web development practices.",
-    "date": "2025-12-01",
-    "time": "09:00 AM - 05:00 PM",
-    "location": "MEC Computer Lab",
-    "category": "Bootcamp",
-    "image": "/img/events/contest-nov2024/4.jpg",
-    "href": "/events/upcoming",
-    "status": "upcoming",
-    "registrationOpen": false,
-    "maxParticipants": 40
   },
   {
     "id": "ai-seminar-2024",
