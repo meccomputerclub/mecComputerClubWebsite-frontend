@@ -43,8 +43,10 @@ export default function HomeHeroSection() {
         {/* Eyebrow */}
         <div className="mx-auto max-w-3xl flex items-center justify-center gap-2 mb-4">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur px-3 py-1 text-sm">
-            <span className="size-2 rounded-full bg-[#FFB800]" />
-            Learn. Build. Share.
+            <span className="size-2 rounded-full bg-[#FFB800]" />Learn
+            <span className="size-2 rounded-full bg-[#FFB800]" /> Build
+            <span className="size-2 rounded-full bg-[#FFB800]" /> Share
+            
           </span>
         </div>
 
@@ -75,16 +77,16 @@ export default function HomeHeroSection() {
         </div>
 
         {/* Compact stats strip */}
-        <div className="mx-auto max-w-4xl grid grid-cols-2 md:grid-cols-2 gap-3">
-          <div className="rounded-xl bg-white/10 backdrop-blur px-4 py-3 text-left">
-            <div className="text-2xl font-bold">150+</div>
+        <div className="mx-auto max-w-10xl grid grid-cols-2 md:grid-cols-2 gap-6">
+          <div className="rounded-xl bg-white/10 backdrop-blur px-20 py-3">
+            <div className="text-2xl font-bold">300+</div>
             <div className="text-white/80 text-sm">Active Members</div>
           </div>
           {/* <div className="rounded-xl bg-white/10 backdrop-blur px-4 py-3 text-left">
             <div className="text-2xl font-bold">35+</div>
             <div className="text-white/80 text-sm">Projects</div>
           </div> */}
-          <div className="rounded-xl bg-white/10 backdrop-blur px-4 py-3 text-left">
+          <div className="rounded-xl bg-white/10 backdrop-blur px-20 py-3">
             <div className="text-2xl font-bold">10+</div>
             <div className="text-white/80 text-sm">Events / Year</div>
           </div>

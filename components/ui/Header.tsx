@@ -1,6 +1,6 @@
 "use client";
 import logoLight from "@/public/img/mecHorizontalDark.png";
-import logoDark from "@/public/img/mecHorizontalDark.png";
+import logoDark from "@/public/img/mecHorizontalLight.png";
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
