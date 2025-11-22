@@ -19,7 +19,7 @@ export default function ContactCTA() {
             Join Now
           </Link>
           <Link
-            href="/projects/propose"
+            href="/contact-us"
             className="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-lg shadow transition-colors cursor-pointer"
           >
             Propose Project

@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import logoDark from "@/public/img/mecHorizontalLight.png";
+import logoDark from "@/public/img/mecHorizontalLight128.png";
 import Image from "next/image";
 import { FaFacebookF, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   return (
     <footer className="relative bg-primary text-primary-foreground mt-0 pt-12 pb-6 px-4 md:px-0 transition-colors">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-6">
+      <div className="max-w-7xl px-10 mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-6">
         {/* About & Social */}
         <div>
           {/* Logo */}
@@ -24,21 +24,21 @@ export default function Footer() {
           <div className="flex gap-3">
             {/* Replace with your social icons */}
             <a
-              href="https://www.facebook.com/"
+              href="https://www.facebook.com/mec.programmingclub"
               className="bg-white/15 hover:bg-secondary rounded-full w-10 h-10 flex items-center justify-center text-xl transition-colors cursor-pointer"
               aria-label="Facebook"
             >
               <FaFacebookF className="w-6 h-6" />
             </a>
             <a
-              href="https://www.linkedin.com/"
+              href="https://www.linkedin.com/in/mec-computer-club/"
               className="bg-white/15 hover:bg-secondary rounded-full w-10 h-10 flex items-center justify-center text-xl transition-colors cursor-pointer"
               aria-label="LinkedIn"
             >
               <FaLinkedinIn className="w-6 h-6" />
             </a>
             <a
-              href="https://www.youtube.com/"
+              href="https://www.youtube.com/@MECComputerClub"
               className="bg-white/15 hover:bg-secondary rounded-full w-10 h-10 flex items-center justify-center text-xl transition-colors cursor-pointer"
               aria-label="YouTube"
             >

@@ -27,7 +27,7 @@ export default function SponsorsCarousel() {
   return (
     <section className="max-w-7xl mx-auto px-4 py-10" aria-label="Sponsors">
       <div className="flex items-end justify-between mb-4 flex-wrap gap-2">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#0B1437] dark:text-white">Our Sponsors</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-[#0B1437] dark:text-white">Past Sponsors</h2>
         <Link href="/sponsors" className="text-primary hover:text-secondary text-sm md:text-base">All Sponsors</Link>
       </div>
       <Carousel opts={{ align: "start", loop: true, dragFree: true }} className="relative rounded-2xl border border-gray-100 dark:border-[#232B3E] bg-white dark:bg-[#181F2A] px-4 py-6">

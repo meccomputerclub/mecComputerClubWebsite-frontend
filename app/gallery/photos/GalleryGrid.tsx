@@ -9,7 +9,8 @@ export default function GalleryGrid({ images }: { images: Img[] }) {
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {images.map((img) => (
+        {images.filter((img) => !img.alt.toLowerCase().includes("banner"))
+        .map((img) => (
           <button
             key={img.src}
             onClick={() => setOpen(img)}

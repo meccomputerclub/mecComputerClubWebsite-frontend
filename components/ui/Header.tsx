@@ -1,6 +1,6 @@
 "use client";
 import logoLight from "@/public/img/mecHorizontalDark.png";
-import logoDark from "@/public/img/mecHorizontalLight.png";
+import logoDark from "@/public/img/mecHorizontalLight128.png";
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
@@ -76,7 +76,7 @@ const eventsMegaMenu = [
 const resourcesMegaMenu = [
   {
     label: "Tutorials",
-    route: "/resources/tutorials",
+    route: "/tutorials",
     icon: <FaVideo className="text-red-600" />,
     description: "Learn with guides",
     iconBgColor: "bg-red-50 dark:bg-red-900/30",
@@ -88,13 +88,13 @@ const resourcesMegaMenu = [
     description: "Latest updates",
     iconBgColor: "bg-purple-50 dark:bg-purple-900/30",
   },
-  {
-    label: "Repositories",
-    route: "https://github.com/meccomputerclub",
-    icon: <FaGlobe className="text-green-600" />,
-    description: "Code and resources",
-    iconBgColor: "bg-green-50 dark:bg-green-900/30",
-  },
+  // {
+  //   label: "Repositories",
+  //   route: "https://github.com/meccomputerclub",
+  //   icon: <FaGlobe className="text-green-600" />,
+  //   description: "Code and resources",
+  //   iconBgColor: "bg-green-50 dark:bg-green-900/30",
+  // },
 ];
 
 const galleryMegaMenu = [
