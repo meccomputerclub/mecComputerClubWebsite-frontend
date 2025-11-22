@@ -16,10 +16,7 @@ export default function AboutClub() {
             className="w-full h-auto object-cover"
             priority
           />
-          <div className="absolute bottom-5 right-5 bg-gradient-to-br from-primary to-secondary rounded-2xl p-5 text-white shadow-lg hidden md:block">
-            <div className="text-3xl font-bold mb-1">42</div>
-            <div className="text-sm opacity-90">Active Members</div>
-          </div>
+          
         </div>
 
         {/* Right: Content */}

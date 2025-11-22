@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import logoDark from "@/public/img/mecHorizontalDark.png";
+import logoDark from "@/public/img/mecHorizontalLight.png";
 import Image from "next/image";
 import { FaFacebookF, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 
