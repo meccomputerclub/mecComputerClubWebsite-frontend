@@ -78,7 +78,7 @@ export default function UpcomingEvent() {
                   View details
                 </Link>
                 <a
-                  href="#events"
+                  href={upcoming.href}
                   className="bg-white/15 hover:bg-white/25 text-white font-semibold px-5 py-2.5 rounded-lg shadow transition-colors"
                 >
                   More events
