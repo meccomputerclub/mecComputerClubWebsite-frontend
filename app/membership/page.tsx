@@ -36,13 +36,13 @@ export default function MembershipPage() {
             The people who make the club vibrant — builders, learners, mentors.
           </p>
         </div>
-
+        {members.length && 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {members.map((m, idx) => (
             <MemberCard key={`${m.name}-${idx}`} {...m} />
           ))}
         </div>
-
+        }
         <div className="mt-12 rounded-2xl border border-gray-100 dark:border-[#232B3E] bg-white dark:bg-[#181F2A] p-6 md:p-8">
           <h3 className="text-2xl font-bold text-[#0B1437] dark:text-white mb-2">Become a Member</h3>
           <p className="text-gray-700 dark:text-gray-300">

@@ -29,11 +29,13 @@ export default function AlumniPage() {
     <main className="bg-[#F7FAFF] dark:bg-[#101624] min-h-screen transition-colors">
       <PageHero title="Alumni" crumbs={[{ label: "Home" }, { label: "Members" }, { label: "Alumni" }]} />
       <section className="max-w-7xl mx-auto px-4 py-10">
+      {alumni.length &&   
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {alumni.map((m, idx) => (
             <MemberCard key={`${m.name}-${idx}`} {...m} />
           ))}
         </div>
+      } 
       </section>
     </main>
   );
