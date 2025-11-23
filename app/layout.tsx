@@ -39,8 +39,8 @@ export const metadata: Metadata = {
   keywords: ["MEC Computer Club", "MEC", "Computer Club", "Programming", "Robotics", "AI", "ML", "Workshops", "Hackathon", "Bangladesh"],
   authors: [{ name: "MEC Computer Club" }],
   icons: {
-    icon: "/img/mecHorizontalDark.png",
-    apple: "/img/mecHorizontalDark.png",
+    icon: "favicon.ico",
+    apple: "favicon.ico",
   },
   openGraph: {
     title: "MEC Computer Club",

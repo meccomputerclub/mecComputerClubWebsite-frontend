@@ -1,39 +1,31 @@
 [
   {
-    "id": "intra-mec-contest-2025-announcement",
-    "title": "Intra MEC Programming Contest 2025 — Announcement",
-    "category": "Events",
-    "date": "2025-11-20",
-    "excerpt": "Get ready for the biggest coding showdown at MEC! Registration opens soon with multiple tracks and exciting prizes.",
-    "image": "/img/events/contest-nov2024/1.jpg",
-    "content": "We are excited to announce the Intra MEC Programming Contest 2025. The contest will feature beginner and advanced tracks, team and solo categories, and problem sets designed by our mentors..."
+  "id": "ai-future-01",
+  "title": "How AI is Transforming the Future of Work",
+  "category": "Artificial Intelligence",
+  "date": "2025-11-22",
+  "excerpt": "AI is reshaping industries, workflows, and the global job market. Here’s how the future of work is evolving.",
+  "image": "/img/blog/ai.png",
+  "content": "Artificial Intelligence is no longer a futuristic concept; it is now deeply integrated into the way global industries operate. From automating simple repetitive tasks to enabling advanced decision-making, AI is transforming the workforce at an incredible pace. Many organizations have already shifted from manual operations to AI-assisted workflows, increasing efficiency and reducing operational costs. This shift, however, brings both exciting opportunities and new challenges.\n\nOne of the biggest changes AI introduces is the rise of intelligent automation. Systems powered by machine learning can analyze massive datasets, detect patterns, and take actions faster than any human. This opens doors to productivity levels never seen before. Workers, instead of performing repetitive tasks, can focus on complex problem-solving and creative duties.\n\nHowever, AI adoption also raises questions about job displacement. Many low-skill tasks are gradually being replaced by automated systems. But instead of reducing the workforce, AI is creating demand for new job categories, such as AI trainers, data analysts, and automation supervisors. Upskilling and reskilling will play a crucial role in ensuring a smooth transition.\n\nIn the coming decade, AI will not only change how we work but also redefine the structure of companies and the global economy. Organizations that adapt early will have a clear competitive advantage."
   },
   {
-    "id": "robotics-workshop-recap",
-    "title": "Hands-on Robotics Workshop — Recap",
-    "category": "Workshops",
-    "date": "2025-10-15",
-    "excerpt": "A quick recap of our robotics workshop covering sensors, actuators, and line-following logic.",
-    "image": "/img/events/contest-nov2024/2.jpg",
-    "content": "We covered Arduino basics, motor drivers, IR sensors, and control loops. Teams built and tuned simple line-following robots..."
-  },
+  "id": "cp-2025-relevance",
+  "title": "Is Competitive Programming Still Relevant in 2025?",
+  "category": "Technology & Education",
+  "date": "2025-11-22",
+  "excerpt": "Competitive programming has evolved, but is it still valuable in 2025? Here's a deep look into its relevance in the modern tech world.",
+  "image": "/img/blog/cp.png",
+  "content": "In 2025, competitive programming remains one of the most debated topics in the tech community. Some see it as the ultimate test of problem-solving skills, while others argue that the industry has shifted toward practical development, making CP less necessary. The truth lies somewhere in between. Competitive programming may not directly mirror real-world software development, but its relevance has not disappeared.\n\nOne of the biggest strengths of competitive programming is its ability to sharpen logical thinking. It trains the brain to analyze problems quickly, find patterns, and implement optimized solutions. These skills are highly valuable, especially in fields like algorithm design, data engineering, AI research, and systems programming. In 2025, companies still appreciate candidates who can think clearly under pressure.\n\nHowever, the job market has changed. Companies now look for a balance: strong problem-solving ability combined with practical engineering skills such as system design, development experience, and teamwork. This means competitive programming alone is no longer a guaranteed path to top tech jobs, but it is still a powerful advantage when paired with real-world experience.\n\nBeyond jobs, competitive programming remains a thriving community. Global contests like ICPC, Google Coding Competitions, Codeforces, and AtCoder continue to attract millions of participants. For students, CP builds confidence, discipline, and mathematical intuition—qualities that benefit long-term learning.\n\nSo, is competitive programming still relevant in 2025? Absolutely—just not as the only skill. It is most valuable when treated as a powerful supplement to practical development, not a replacement for it."
+},
   {
-    "id": "llm-study-circle",
-    "title": "LLM Study Circle — Kickoff",
-    "category": "AI/ML",
-    "date": "2025-10-01",
-    "excerpt": "We kicked off our LLM study circle. Here’s the reading list and project ideas for the semester.",
-    "image": "/img/events/contest-nov2024/3.jpg",
-    "content": "We will explore tokenizer mechanics, attention, fine-tuning, and evaluation with small open-source models. Projects include dataset curation and prompt tooling..."
-  },
-  {
-    "id": "project-campus-navigator",
-    "title": "Project Spotlight: Campus Navigator App",
-    "category": "Projects",
-    "date": "2025-09-12",
-    "excerpt": "A student-built app to navigate campus facilities with offline maps and quick search.",
-    "image": "/img/events/contest-nov2024/4.jpg",
-    "content": "The app features wayfinding, searchable POIs, and offline caching. Built with React Native and Maplibre..."
-  }
+  "id": "cyber-02",
+  "title": "Why Cybersecurity Matters More Than Ever in 2025",
+  "category": "Cybersecurity",
+  "date": "2025-10-18",
+  "excerpt": "Cyber threats are evolving faster than ever. Understanding security basics is critical for every business and individual.",
+  "image": "/img/blog/cyber.png",
+  "content": "In 2025, cybersecurity has become one of the most important areas in the tech world due to the massive digital transformation happening globally. With more people working remotely and more businesses relying on cloud services, cyber threats have grown in both sophistication and frequency. Hackers no longer attack only large corporations; small businesses, educational institutions, and individual users are now common targets.\n\nModern cyberattacks often use advanced techniques such as AI-driven phishing, ransomware-as-a-service, and deepfake-based scams. These threats can bypass traditional security measures, making it crucial for users and companies to adopt stronger protections like multi-factor authentication, endpoint security, and regular vulnerability scanning. What was once considered optional is now essential.\n\nMoreover, as the value of data increases, so does the motivation for attackers. Personal information, financial data, and even browsing behavior are highly valuable on the dark web. This results in massive data breaches that can expose millions of users at once. The economic impact of cyberattacks is also rising, costing businesses billions of dollars every year.\n\nStrengthening cybersecurity awareness is no longer just a job for IT teams. Every user must understand how to identify phishing emails, protect passwords, and avoid suspicious links. Strong cybersecurity culture is now the foundation of digital safety."
+}
+
 ]
 
