@@ -18,7 +18,7 @@ const BLOGS_PER_PAGE = 6;
 
 export default function BlogPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("সব");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [categories, setCategories] = useState<string[]>([]);
   const [page, setPage] = useState(1);
 
@@ -37,7 +37,7 @@ export default function BlogPage() {
   }, [selectedCategory]);
 
   const filteredBlogs =
-    selectedCategory === "সব"
+    selectedCategory === "All"
       ? blogs
       : blogs.filter((b) => b.category === selectedCategory);
 
@@ -101,7 +101,7 @@ export default function BlogPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {paginatedBlogs.length === 0 ? (
                 <div className="col-span-full text-center text-gray-400 dark:text-gray-500 py-12 text-lg">
-                  কোনো ব্লগ পাওয়া যায়নি।
+                  Didnt Found Any Blog
                 </div>
               ) : (
                 paginatedBlogs.map((blog) => (
@@ -117,7 +117,7 @@ export default function BlogPage() {
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page === 1}
               >
-                পূর্ববর্তী
+                Previous
               </button>
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
                 <button
@@ -137,7 +137,7 @@ export default function BlogPage() {
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}
               >
-                পরবর্তী
+                Next
               </button>
             </div>
           )}

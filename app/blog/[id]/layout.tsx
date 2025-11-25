@@ -39,7 +39,7 @@ export async function generateMetadata({
   
   if (!blog) {
     return {
-      title: 'Blog Post Not Found - FlexoHost',
+      title: 'Blog Post Not Found - MEC Computer Club',
       description: 'The blog post you are looking for could not be found.',
     };
   }

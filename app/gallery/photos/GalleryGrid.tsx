@@ -9,7 +9,8 @@ export default function GalleryGrid({ images }: { images: Img[] }) {
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {images.map((img) => (
+        {images.filter((img) => !img.alt.toLowerCase().includes("banner"))
+        .map((img) => (
           <button
             key={img.src}
             onClick={() => setOpen(img)}
@@ -18,10 +19,7 @@ export default function GalleryGrid({ images }: { images: Img[] }) {
             <div className="relative aspect-[4/3]">
               <Image src={img.src} alt={img.alt} fill style={{ objectFit: "cover" }} />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
-            </div>
-            <div className="px-3 py-2 bg-white dark:bg-[#181F2A] text-sm text-gray-700 dark:text-gray-300">
-              {img.alt}
-            </div>
+            </div>        
           </button>
         ))}
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Sun, Moon, Phone, Mail, MessageCircle, Facebook, Linkedin, Youtube, Github } from "lucide-react";
+import { Sun, Moon, Phone, Mail, MessageCircle, Facebook, Linkedin, Youtube } from "lucide-react";
 import { useDarkMode } from "@/lib/DarkModeContext";
 import Link from "next/link";
 
@@ -28,7 +28,7 @@ const TopBar: React.FC = () => {
             </Link>
             <Link href="mailto:support@flexohost.com" className="flex items-center gap-1 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors" passHref>
               <Mail className="w-3 h-3" />
-              <span className="hidden sm:inline">support@meccomputerclub.org</span>
+              <span className="hidden sm:inline">meccomputerclub@gmail.com</span>
               <span className="sm:hidden">Email</span>
             </Link>
         </div>
@@ -52,18 +52,16 @@ const TopBar: React.FC = () => {
 
             {/* Social Links */}
             <div className="hidden sm:flex items-center gap-2">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="p-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                <Facebook className="w-4 h-4" />
+              <a href="https://facebook.com/mec.programmingclub" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="p-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <Facebook className="w-4 h-4 dark:text-white" />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                <Linkedin className="w-4 h-4" />
+              <a href="https://linkedin.com/mec-computer-club" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <Linkedin className="w-4 h-4 dark:text-white" />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="p-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                <Youtube className="w-4 h-4" />
+              <a href="https://youtube.com/@meccomputerclub" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="p-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <Youtube className="w-4 h-4 dark:text-white" />
               </a>
-              <a href="https://github.com/meccomputerclub" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                <Github className="w-4 h-4" />
-              </a>
+              
             </div>
 
             {/* Support Button */}

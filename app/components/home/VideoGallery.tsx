@@ -5,24 +5,15 @@ import Image from "next/image";
 const videos = [
   {
     id: "1",
-    youtubeId: "ihRgN76mn5o",
-    title: "How to Setup Domain",
+    youtubeId: "UUpV0BNoNOE",
+    title: "Upsolving DUET IUPC problems | MEC Computer Club | Md Shazid Al Hasan",
   },
   {
     id: "2",
-    youtubeId: "QcV2VF785lc",
-    title: "cPanel Basics",
+    youtubeId: "tZ3vYHsZiiI",
+    title: "Webinar on Online Judges and VS Code Tips & Tricks!",
   },
-  {
-    id: "3",
-    youtubeId: "fPWHBnlzSGU",
-    title: "WordPress Install",
-  },
-  {
-    id: "4",
-    youtubeId: "fPWHBnlzSGU",
-    title: "SSL Setup",
-  },
+  
 ];
 
 export default function VideoGallery() {
@@ -51,7 +42,7 @@ export default function VideoGallery() {
               className="absolute inset-0 flex items-center justify-center focus:outline-none"
             >
               <span className="relative z-10">
-                <span className="block w-16 h-16 rounded-full bg-white/80 dark:bg-[#22223b]/80 shadow-lg items-center justify-center transition-transform group-hover:scale-110">
+                <span className="flex flex-col w-16 h-16 rounded-full bg-white/80 dark:bg-[#22223b]/80 shadow-lg items-center justify-center transition-transform group-hover:scale-110">
                   <svg
                     className="w-8 h-8 text-[#FF267E] drop-shadow-glow"
                     viewBox="0 0 24 24"

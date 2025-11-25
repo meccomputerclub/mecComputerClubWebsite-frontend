@@ -138,6 +138,15 @@
           "img": "/img/members/executive-members/15.webp",
           "bio": "Leads project squads. Interested in mobile apps and UI/UX.",
           "socials": { "linkedin": "https://linkedin.com" }
+        },
+        {
+          "name": "Sayeem Shahriar Sami",
+          "role": "Executive Member",
+          "batch": "CSE 6th",
+          "email": "mahmudul@example.org",
+          "img": "/img/members/executive-members/16.webp",
+          "bio": "Leads project squads. Interested in mobile apps and UI/UX.",
+          "socials": { "linkedin": "https://linkedin.com" }
         }
       ]
     },

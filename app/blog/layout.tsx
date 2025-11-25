@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Blog - FlexoHost | Web Hosting Tips & Guides',
+  title: 'Blog - MEC Computer Club',
   description: 'Learn about web hosting, BDIX hosting, WordPress hosting, VPS hosting, and more. Get expert tips, guides, and tutorials from FlexoHost.',
   keywords: [
     'web hosting blog',

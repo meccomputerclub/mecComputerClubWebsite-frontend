@@ -43,7 +43,7 @@ export default function BlogCard({ blog }: { blog: Blog }) {
             {blog.category}
           </span>
           <span className="text-xs text-gray-400">
-            {new Date(blog.date).toLocaleDateString("bn-BD", {
+            {new Date(blog.date).toLocaleDateString("en-BD", {
               year: "numeric",
               month: "long",
               day: "numeric",

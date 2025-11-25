@@ -16,17 +16,21 @@ type EventItem = {
   date: string;
   image: string;
   href: string;
+  status: string;
 };
 
 export default function EventsCarousel() {
   const [events, setEvents] = useState<EventItem[]>([]);
 
-  useEffect(() => {
-    fetch("/json/events.json")
-      .then((r) => r.json())
-      .then((data: EventItem[]) => setEvents(data))
-      .catch(() => setEvents([]));
-  }, []);
+useEffect(() => {
+  fetch("/json/events.json")
+    .then((r) => r.json())
+    .then((data: EventItem[]) => {
+      const pastEvents = data.filter((e) => e.status === "past");
+      setEvents(pastEvents);
+    })
+    .catch(() => setEvents([]));
+}, []);
 
   if (events.length === 0) return null;
 

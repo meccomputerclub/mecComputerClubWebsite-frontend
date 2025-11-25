@@ -55,6 +55,10 @@ export default function ContactUsPage() {
                 <a href="tel:+8801780667954" className="text-lg font-semibold text-[#0B1437] dark:text-white hover:text-primary transition-colors">
                   +8801780667954
                 </a>
+                <br></br>
+                <a href="tel:+8801773758374" className="text-lg font-semibold text-[#0B1437] dark:text-white hover:text-primary transition-colors">
+                  +8801773758374
+                </a>
               </div>
             </div>
           </div>
@@ -66,7 +70,7 @@ export default function ContactUsPage() {
               <div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">Email</div>
                 <a href="mailto:support@meccomputerclub.org" className="text-lg font-semibold text-[#0B1437] dark:text-white hover:text-primary transition-colors">
-                  support@meccomputerclub.org
+                  meccomputerclub@gmail.com
                 </a>
               </div>
             </div>

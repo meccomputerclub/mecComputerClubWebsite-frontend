@@ -79,7 +79,7 @@ export default function SingleBlogPage() {
       <main className="min-h-screen bg-[#F7FAFF] dark:bg-[#101624] py-0 transition-colors">
         <HeroSection
           title="Loading..."
-          subtitle={<span>Blog - FlexoHost</span>}
+          subtitle={<span>Blog - MEC Computer Club</span>}
           gradientFrom="#0B1437"
           gradientTo="#009FFF"
         />
@@ -185,7 +185,7 @@ export default function SingleBlogPage() {
                 itemProp="datePublished"
               >
                 <Calendar className="w-3 h-3" />
-                {new Date(blog.date).toLocaleDateString("bn-BD", {
+                {new Date(blog.date).toLocaleDateString("en-BD", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
