@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Footer";
 import { CurrencyProvider } from "@/lib/CurrencyContext";
 import { BlackFridayProvider } from "@/lib/BlackFridayContext";
 import { DarkModeProvider } from "@/lib/DarkModeContext";
 
 import { Hind_Siliguri, Anek_Bangla } from "next/font/google";
-import TopBar from "@/components/ui/TopBar";
-
+import ConditionalLayout from "@/components/ConditionalLayout";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali"],
@@ -35,8 +32,20 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "MEC Computer Club",
-  description: "Official website of MEC Computer Club — Learn, Build, Share. Coding, Robotics, AI/ML, Workshops, Projects and Events at Mymensingh Engineering College.",
-  keywords: ["MEC Computer Club", "MEC", "Computer Club", "Programming", "Robotics", "AI", "ML", "Workshops", "Hackathon", "Bangladesh"],
+  description:
+    "Official website of MEC Computer Club — Learn, Build, Share. Coding, Robotics, AI/ML, Workshops, Projects and Events at Mymensingh Engineering College.",
+  keywords: [
+    "MEC Computer Club",
+    "MEC",
+    "Computer Club",
+    "Programming",
+    "Robotics",
+    "AI",
+    "ML",
+    "Workshops",
+    "Hackathon",
+    "Bangladesh",
+  ],
   authors: [{ name: "MEC Computer Club" }],
   icons: {
     icon: "/img/mecHorizontalDark.png",
@@ -82,12 +91,9 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <CurrencyProvider>
-          <DarkModeProvider >
+          <DarkModeProvider>
             <BlackFridayProvider>
-              <TopBar />
-              <Header />
-              {children}
-              <Footer />
+              <ConditionalLayout>{children}</ConditionalLayout>
             </BlackFridayProvider>
           </DarkModeProvider>
         </CurrencyProvider>
@@ -104,12 +110,12 @@ export default function RootLayout({
               t.src=v;s=b.getElementsByTagName(e)[0];
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || 'YOUR_PIXEL_ID'}');
+              fbq('init', '${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || "YOUR_PIXEL_ID"}');
               fbq('track', 'PageView');
               
               // Enhanced tracking with Conversions API
               window.fbq('trackCustom', 'PageViewEnhanced', {
-                pixel_id: '${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || 'YOUR_PIXEL_ID'}',
+                pixel_id: '${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || "YOUR_PIXEL_ID"}',
                 timestamp: Math.floor(Date.now() / 1000)
               });
             `,
@@ -117,11 +123,13 @@ export default function RootLayout({
         />
         <noscript>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img 
-            height="1" 
-            width="1" 
-            style={{display: 'none'}}
-            src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || 'YOUR_PIXEL_ID'}&ev=PageView&noscript=1`}
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src={`https://www.facebook.com/tr?id=${
+              process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || "YOUR_PIXEL_ID"
+            }&ev=PageView&noscript=1`}
             alt=""
           />
         </noscript>
