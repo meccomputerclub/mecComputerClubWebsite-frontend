@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import ToastNotification from "@/app/components/shared/ToastNotification";
-import { useAuth } from "@/lib/hooks/useAuth";
+import ToastNotification from "@/components/ui/shared/ToastNotification";
+import { useAuth } from "@/lib/context/AuthContext";
 
 interface LoginFormState {
   email: string;
@@ -38,12 +38,12 @@ const Login: React.FC = () => {
     } catch (err) {
       console.error("Error logging in:", err);
       setError("A server error occurred. Please try again later.");
+    } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    // Global Container: Same background gradient as InvitationPage.tsx
     <div
       className="
                 min-h-screen flex flex-col items-center justify-center 

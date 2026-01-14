@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { Code, User, ChevronDown, LogOut } from "lucide-react";
-import { useAuth } from "@/lib/hooks/useAuth";
-import type { User as UserType } from "@/lib/data/mockData";
+import { useAuth } from "@/lib/context/AuthContext";
+import { AuthUser } from "@/lib/types";
 
 interface DashboardNavbarProps {
-  role: "admin" | "member";
+  role: AuthUser["role"];
   onRoleChange: (role: "admin" | "member") => void;
-  user: UserType | undefined;
+  user: AuthUser | null;
 }
 
 export const DashboardNavbar: React.FC<DashboardNavbarProps> = ({ role, onRoleChange, user }) => {

@@ -3,11 +3,11 @@
 // =================================================================================================
 
 export interface User {
-  id: number;
+  id: string | number;
   fullName: string;
   email: string;
-  role: "admin" | "member";
-  status: "Active" | "Pending" | "Inactive";
+  role: "admin" | "member" | "alumni" | "guest";
+  profileStatus: "incomplete" | "active" | "deleted" | "banned";
   eventsAttended?: number;
 }
 
@@ -51,7 +51,7 @@ export const MOCK_USERS: User[] = [
     fullName: "Alice Johnson (Admin)",
     email: "alice@mec.club",
     role: "admin",
-    status: "Active",
+    profileStatus: "active",
     eventsAttended: 12,
   },
   {
@@ -59,7 +59,7 @@ export const MOCK_USERS: User[] = [
     fullName: "Bob Smith (Member)",
     email: "bob@mec.club",
     role: "member",
-    status: "Active",
+    profileStatus: "active",
     eventsAttended: 5,
   },
   {
@@ -67,7 +67,7 @@ export const MOCK_USERS: User[] = [
     fullName: "Charlie Brown",
     email: "charlie@mec.club",
     role: "member",
-    status: "Pending",
+    profileStatus: "incomplete",
   },
 ];
 

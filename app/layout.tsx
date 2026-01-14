@@ -7,6 +7,7 @@ import { DarkModeProvider } from "@/lib/DarkModeContext";
 
 import { Hind_Siliguri, Anek_Bangla } from "next/font/google";
 import ConditionalLayout from "@/components/ConditionalLayout";
+import { AuthProvider } from "@/lib/context/AuthContext";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali"],
@@ -93,7 +94,9 @@ export default function RootLayout({
         <CurrencyProvider>
           <DarkModeProvider>
             <BlackFridayProvider>
-              <ConditionalLayout>{children}</ConditionalLayout>
+              <AuthProvider>
+                <ConditionalLayout>{children}</ConditionalLayout>
+              </AuthProvider>
             </BlackFridayProvider>
           </DarkModeProvider>
         </CurrencyProvider>

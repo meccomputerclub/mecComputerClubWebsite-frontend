@@ -1,13 +1,36 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { verifyAuthToken, CustomJWTPayload } from "./lib/jwt"; // Import the utility function
 
 // Middleware function
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
+  // MAKE IT ASYNC
   const invitationCookie = req.cookies.get("invitation_validated")?.value;
-  const token = req.cookies.get("auth_token")?.value; // JWT or session token
-  const userRole = req.cookies.get("role")?.value; // "admin" or "user"
-
+  const token = req.cookies.get("auth_token")?.value;
   const { pathname } = req.nextUrl;
+
+  let payload: CustomJWTPayload | null = null;
+
+  // --- Core JWT Validation Logic ---
+  if (token) {
+    payload = await verifyAuthToken(token);
+  }
+  // ---------------------------------
+
+  // --- NEW: 0️⃣ Public Route Protection ---
+  // If a *valid* token exists, they should not access login/register.
+  if (payload) {
+    // Check for payload (meaning token is valid)
+    if (pathname.startsWith("/login") || pathname.startsWith("/register")) {
+      // Use the role from the payload to determine the dashboard (best practice)
+      // const redirectPath = payload.role === 'admin' ? '/dashboard/admin' : '/dashboard';
+      const redirectPath = "/dashboard";
+      if (!pathname.startsWith(redirectPath)) {
+        return NextResponse.redirect(new URL(redirectPath, req.url));
+      }
+    }
+  }
+  // ----------------------------------------
 
   // 1️⃣ Invitation-protected pages
   if (pathname.startsWith("/register/form")) {
@@ -18,28 +41,22 @@ export function middleware(req: NextRequest) {
 
   // 2️⃣ Dashboard-protected pages
   if (pathname.startsWith("/dashboard")) {
-    if (!token) {
-      return NextResponse.redirect(new URL("/login", req.url));
-    }
-
-    // 2a️⃣ Admin dashboard check
-    if (pathname.startsWith("/dashboard/admin") && userRole !== "admin") {
-      return NextResponse.redirect(new URL("/dashboard/user", req.url));
-    }
-
-    // 2b️⃣ Regular user dashboard check
-    if (pathname.startsWith("/dashboard/user") && userRole !== "user") {
-      return NextResponse.redirect(new URL("/dashboard/admin", req.url));
+    if (!payload) {
+      // Check for payload (meaning token is valid)
+      // If token is invalid or missing, redirect to login
+      const response = NextResponse.redirect(new URL("/login", req.url));
+      // Optional: Clear the invalid cookie
+      if (token) {
+        response.cookies.delete("auth_token");
+      }
+      return response;
     }
   }
 
   return NextResponse.next();
 }
 
-// Matcher configuration
+// Matcher configuration (remains the same)
 export const config = {
-  matcher: [
-    "/register/form/:path*", // Invitation form
-    "/dashboard/:path*", // All dashboard routes
-  ],
+  matcher: ["/login", "/register", "/register/form/:path*", "/dashboard/:path*"],
 };
