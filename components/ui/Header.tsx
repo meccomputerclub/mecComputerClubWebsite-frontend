@@ -21,6 +21,8 @@ import {
   FaBlog,
   FaBuilding,
   FaEnvelope,
+  FaUserPlus,
+  FaSignInAlt,
 } from "react-icons/fa";
 
 const aboutMegaMenu = [
@@ -131,20 +133,37 @@ const getInvolvedSubMenu = [
   },
 ];
 
+const joinClubSubMenu = [
+  {
+    label: "Register",
+    route: "/register",
+    icon: <FaUserPlus className="text-red-600" />,
+    description: "New member application",
+    iconBgColor: "bg-red-50 dark:bg-red-900/30",
+  },
+  {
+    label: "Sign In",
+    route: "/login", // Assuming your sign-in route is /signin or /login
+    icon: <FaSignInAlt className="text-blue-600" />,
+    description: "Access member dashboard",
+    iconBgColor: "bg-blue-50 dark:bg-blue-900/30",
+  },
+];
+
 // legacy names replaced by club menus
 
-type MenuItem = 
-  | { label: string; submenu: SubmenuItem[] }
-  | { label: string; route: string };
+type MenuItem = { label: string; submenu: SubmenuItem[] } | { label: string; route: string };
 
 function hasSubmenu(item: MenuItem): item is { label: string; submenu: SubmenuItem[] } {
-  return 'submenu' in item;
+  return "submenu" in item;
 }
 
 const mobileMenus: MenuItem[] = [
   { label: "About", submenu: aboutMegaMenu },
   { label: "Events", submenu: eventsMegaMenu },
-  { label: "Members", submenu: [
+  {
+    label: "Members",
+    submenu: [
       {
         label: "Membership",
         route: "/membership",
@@ -166,10 +185,12 @@ const mobileMenus: MenuItem[] = [
         description: "Past members & mentors",
         iconBgColor: "bg-purple-50 dark:bg-purple-900/30",
       },
-    ] },
+    ],
+  },
   { label: "Resources", submenu: resourcesMegaMenu },
   { label: "Gallery", submenu: galleryMegaMenu },
   { label: "Get Involved", submenu: getInvolvedSubMenu },
+  { label: "Join The Club", submenu: joinClubSubMenu },
 ];
 
 export default function Header() {
@@ -185,10 +206,7 @@ export default function Header() {
   useEffect(() => {
     if (!menuOpen) return;
     function handleClick(e: MouseEvent) {
-      if (
-        mobileNavRef.current &&
-        !mobileNavRef.current.contains(e.target as Node)
-      ) {
+      if (mobileNavRef.current && !mobileNavRef.current.contains(e.target as Node)) {
         setMenuOpen(false);
       }
     }
@@ -210,12 +228,12 @@ export default function Header() {
         {/* Logo */}
         <div className="flex items-center gap-2 ">
           <Link href="/">
-              <Image
-                alt="FlexoHost Logo"
+            <Image
+              alt="FlexoHost Logo"
               src={isDark ? logoDark : logoLight}
               width={180}
               height={60}
-              ></Image>
+            ></Image>
           </Link>
         </div>
         {/* Dark mode toggle */}
@@ -247,29 +265,32 @@ export default function Header() {
                 label: "Events",
                 submenu: eventsMegaMenu,
               },
-              { label: "Members", submenu: [
-                {
-                  label: "Membership",
-                  route: "/membership",
-                  icon: <FaUsers className="text-blue-600" />,
-                  description: "Benefits and eligibility",
-                  iconBgColor: "bg-blue-50 dark:bg-blue-900/30",
-                },
-                {
-                  label: "Executive Committee",
-                  route: "/leadership",
-                  icon: <FaUsers className="text-indigo-600" />,
-                  description: "Club leadership",
-                  iconBgColor: "bg-indigo-50 dark:bg-indigo-900/30",
-                },
-                {
-                  label: "Alumni",
-                  route: "/alumni",
-                  icon: <FaUsers className="text-purple-600" />,
-                  description: "Past members & mentors",
-                  iconBgColor: "bg-purple-50 dark:bg-purple-900/30",
-                },
-              ] },
+              {
+                label: "Members",
+                submenu: [
+                  {
+                    label: "Membership",
+                    route: "/membership",
+                    icon: <FaUsers className="text-blue-600" />,
+                    description: "Benefits and eligibility",
+                    iconBgColor: "bg-blue-50 dark:bg-blue-900/30",
+                  },
+                  {
+                    label: "Executive Committee",
+                    route: "/leadership",
+                    icon: <FaUsers className="text-indigo-600" />,
+                    description: "Club leadership",
+                    iconBgColor: "bg-indigo-50 dark:bg-indigo-900/30",
+                  },
+                  {
+                    label: "Alumni",
+                    route: "/alumni",
+                    icon: <FaUsers className="text-purple-600" />,
+                    description: "Past members & mentors",
+                    iconBgColor: "bg-purple-50 dark:bg-purple-900/30",
+                  },
+                ],
+              },
               { label: "Resources", submenu: resourcesMegaMenu },
               { label: "Gallery", submenu: galleryMegaMenu },
               { label: "Get Involved", submenu: getInvolvedSubMenu },
@@ -282,11 +303,25 @@ export default function Header() {
         </nav>
         {/* CTA Button */}
         <div className="hidden md:flex items-center ml-6 gap-2 ">
-          <Link href="/join">
-            <span className="inline-block px-6 py-2 rounded-lg font-bold text-primary-foreground bg-primary shadow hover:bg-secondary transition-colors">
-              Join the Club
-            </span>
-          </Link>
+          {/* Option 1: Render the Sign-in/Register as a dropdown menu */}
+          <ul className="flex flex-row gap-8 px-0 py-0">
+            <li>
+              {/* Using the Menu component for the dropdown */}
+              <Menu
+                label="Join The Club"
+                submenu={joinClubSubMenu}
+                // You might need to add a custom class prop to the Menu component
+                // or style the element here if you want a button appearance
+                // instead of a standard text link.
+              />
+            </li>
+          </ul>
+
+          {/* Option 2: If you still want "Join the Club" as a button, 
+        but it links to the main /join page and the other links are in the dropdown: 
+        You could adjust the "Get Involved" link to be the button and move the 
+        Sign In link into the dropdown. But for simplicity, we stick to the dropdown.
+    */}
         </div>
       </div>
       {/* Mobile Overlay */}
@@ -350,11 +385,7 @@ export default function Header() {
                       strokeWidth="2"
                       viewBox="0 0 24 24"
                     >
-                      <path
-                        d="M6 9l6 6 6-6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
+                      <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </button>
                   {open && (
@@ -418,7 +449,7 @@ export default function Header() {
                   )}
                 </div>
               );
-            } else if ('route' in item) {
+            } else if ("route" in item) {
               return isExternalUrl(item.route) ? (
                 <a
                   key={item.label}
@@ -444,13 +475,13 @@ export default function Header() {
             return null;
           })}
           {/* Mobile CTA Button */}
-          <div className="mt-6">
-            <Link href="/join">
+          {/* <div className="mt-6">
+            <Link href="/register">
               <span className="block w-full text-center px-6 py-2 rounded-lg font-bold text-primary-foreground bg-primary shadow hover:bg-secondary transition-colors">
                 Join the Club
               </span>
             </Link>
-          </div>
+          </div> */}
           {/* Contact Buttons Row */}
           <div className="flex flex-row items-center justify-center gap-4 mt-6 mb-4">
             <a
