@@ -5,7 +5,7 @@ import { FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useRouter, useSearchParams } from "next/navigation";
 import Head from "next/head";
 import axios from "axios";
-import ToastNotification, { Toast } from "@/app/components/shared/ToastNotification";
+import ToastNotification, { Toast } from "@/components/ui/shared/ToastNotification";
 
 interface ResetFormState {
   otp: string;

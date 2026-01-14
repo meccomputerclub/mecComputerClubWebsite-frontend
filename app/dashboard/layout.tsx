@@ -4,14 +4,16 @@ import { useRouter } from "next/navigation";
 import { DashboardNavbar } from "@/components/dashboard/DashboardNavbar";
 import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar";
 import { DASHBOARD_MENU } from "@/lib/constants/dashboard";
-import { useAuth } from "@/lib/hooks/useAuth";
+import { useAuth } from "@/lib/context/AuthContext";
+import UnauthorizedPage from "@/components/ui/shared/Unauthorized";
+import { AuthUser } from "@/lib/types";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const { user, isLoading, isAuthenticated } = useAuth();
+  const { user, isLoading, isAuthenticated, setCustomRole } = useAuth();
   const [isPending, startTransition] = useTransition();
   const [activeTab, setActiveTab] = useState("activity");
-  const [role, setRole] = useState<"admin" | "member">(user?.role || "member");
+  const [role, setRole] = useState<AuthUser["role"]>(user?.role || "member");
 
   // Redirect to login if not authenticated
   useEffect(() => {
@@ -30,18 +32,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   // Function to handle role switch (for testing/admin purposes only)
   const handleSetRole = async (newRole: "admin" | "member") => {
-    // This should typically be disabled in production
-    // Only allow if user is actually an admin
     if (user?.role !== "admin") {
       alert("Only admins can switch roles");
       return;
     }
-
-    // You can implement role switching logic here if needed
-    console.log("Role switch requested:", newRole);
-    // For now, just update the active tab
     setRole(newRole);
+    setCustomRole(newRole);
     setActiveTab(newRole === "admin" ? "overview" : "activity");
+    router.push("/dashboard");
   };
 
   // Memos to dynamically select the correct menu based on role
@@ -70,7 +68,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }
 
   if (!isAuthenticated || !user) {
-    return null;
+    return <UnauthorizedPage></UnauthorizedPage>;
   }
 
   const renderContent = () => {
@@ -99,7 +97,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         menu={currentMenu}
         activeTab={activeTab}
         onTabChange={handleTabChange}
-        role={user.role}
+        role={role}
       />
 
       <div className="flex flex-col flex-1 lg:ml-64">

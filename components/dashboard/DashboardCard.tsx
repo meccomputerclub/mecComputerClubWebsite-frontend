@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
 import { LucideIcon } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 
 interface DashboardCardProps {
   title: string;
-  value: string | number;
+  value: string | number | undefined;
   icon: LucideIcon;
   colorClass: string;
   link?: string;
@@ -19,11 +20,15 @@ export const DashboardCard: React.FC<DashboardCardProps> = ({
   link,
   onClick,
 }) => {
+  const router = useRouter();
+  const path = usePathname();
   const handleClick = () => {
     if (onClick) {
       onClick();
     } else if (link) {
-      alert(`Navigating to ${link}`);
+      if (link.includes("@")) {
+        router.push(`${link.split("@")[1]}`);
+      } else router.push(`${path}/${link}`);
     }
   };
 

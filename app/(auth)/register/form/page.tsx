@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, {
   useState,
@@ -8,12 +9,34 @@ import React, {
   useEffect,
 } from "react";
 import { User, Facebook, Github, Linkedin } from "lucide-react";
-import ToastNotification, { Toast } from "@/app/components/shared/ToastNotification";
+import ToastNotification, { Toast } from "@/components/ui/shared/ToastNotification";
 import axios from "axios";
+import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import LoadingScreen from "@/components/ui/shared/LoadingScreen";
 
 // Placeholder Data for Dropdowns
-const DEPARTMENTS = ["CSE", "EEE", "BBA", "CIVIL", "MECH"];
-const BATCHES = ["1st", "2nd", "3rd", "4th", "5th"];
+const DEPARTMENTS = ["CSE", "EEE", "CIVIL"];
+const BATCHES = [
+  "1st",
+  "2nd",
+  "3rd",
+  "4th",
+  "5th",
+  "6th",
+  "7th",
+  "8th",
+  "9th",
+  "10th",
+  "11th",
+  "12th",
+  "13th",
+  "14th",
+  "15th",
+  "16th",
+  "17th",
+];
 
 // Initial state structure for form data
 const formDataInitial = {
@@ -48,12 +71,56 @@ export default function App() {
   const [formData, setFormData] = useState(formDataInitial);
 
   // State for submission status and toast notifications
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [toast, setToast] = useState<Toast | null>(null);
-
+  const [validCode, setValidCode] = useState(true);
+  const searchParams = useSearchParams();
   const [validationErrors, setValidationErrors] = useState<Partial<Record<FormErrorKeys, string>>>(
     {}
   );
+
+  const router = useRouter();
+  const formId = searchParams.get("formId");
+  const code = searchParams.get("code");
+  const handleToastClose = () => {
+    setToast(null);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let res1,
+        res2,
+        combinedData = {};
+      try {
+        setIsLoading(true);
+        if (formId) {
+          res1 = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/forms/${formId}`);
+          const data = res1.data.data;
+          combinedData = { ...combinedData, ...data };
+        } else if (code) {
+          res2 = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/invite/?code=${code}`);
+          const data = res2.data.data;
+          if (data.status !== "consumable") {
+            setToast({ message: "Invitation code is not valid.", type: "error" });
+            setValidCode(false);
+          } else {
+            combinedData = { ...combinedData, ...data };
+            setValidCode(true);
+            console.log(data);
+          }
+          console.log("combined data: ", combinedData);
+        } else {
+          setToast({ message: "Form ID or invitation code is missing.", type: "error" });
+          setValidCode(false);
+        }
+      } catch (error) {
+        console.log("Error fetching form/invite data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, [formId, code]);
 
   // Refs for focusing on fields that fail validation
   const inputRefs = useRef<
@@ -280,26 +347,6 @@ export default function App() {
   };
   const prevStep = () => currentStep > 1 && setCurrentStep((prev) => prev - 1);
 
-  // Simulated API Call
-  const simulateRegistrationApi = async () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        // Simulate a random success/failure (90% chance of success)
-        if (Math.random() > 0.1) {
-          resolve({
-            success: true,
-            message: "Registration successful! Welcome to the alumni network.",
-          });
-        } else {
-          resolve({
-            success: false,
-            message: "Registration failed due to a server error. Please try again.",
-          });
-        }
-      }, 2000); // 2 seconds processing time
-    });
-  };
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setToast(null);
@@ -348,34 +395,34 @@ export default function App() {
         payload.append("image", imageFile);
       }
 
-      console.log("payload: ", payload);
-
       try {
-        const response = await axios.post("http://localhost:4000/api/users/register", payload);
+        const response = await axios.post("http://localhost:4000/api/users/register", payload, {
+          withCredentials: true,
+        });
 
-        console.log("Registration successful:", response.data);
+        if (response.status === 201) {
+          setToast({ message: "Registration successful!", type: "success" });
+          setFormData(formDataInitial);
+          setImageFile(null);
+          setPreviewUrl(null);
+          setCurrentStep(1);
+          router.push(`/register/verify-email?email=${formData.email}`);
+        }
       } catch (error) {
         if (axios.isAxiosError(error)) {
+          setToast({
+            message:
+              error.response?.data?.message ||
+              error.message ||
+              "Registration failed. Please try again.",
+            type: "error",
+          });
           console.error("Registration error:", error?.response?.data?.message || error.message);
           // Access specific error details if your API provides them
           // console.error(error.response?.data);
         } else {
           console.error("An unexpected error occurred:", error);
         }
-      }
-
-      // Simulate API call
-      const result: any = await simulateRegistrationApi();
-
-      if (result.success) {
-        setToast({ message: result.message, type: "success" });
-        // Optional: Reset form on success for a clean slate
-        // setFormData(formDataInitial);
-        // setImageFile(null);
-        // setPreviewUrl(null);
-        // setCurrentStep(1);
-      } else {
-        setToast({ message: result.message, type: "error" });
       }
     } catch (error) {
       setToast({ message: "An unexpected error occurred during submission.", type: "error" });
@@ -687,7 +734,7 @@ export default function App() {
             {/* Contact Number Field (+ and Digits) */}
             <div>
               <label htmlFor="contactNumber" className="block text-sm font-medium text-gray-700">
-                Contact Number (Optional, + and Digits)
+                Contact Number
               </label>
               <input
                 id="contactNumber"
@@ -776,8 +823,10 @@ export default function App() {
               >
                 {previewUrl ? (
                   // Using standard <img> tag
-                  <img
+                  <Image
                     src={previewUrl}
+                    width={128}
+                    height={128}
                     alt="Profile Preview"
                     className="w-full h-full object-cover"
                   />
@@ -961,6 +1010,37 @@ export default function App() {
     }
   };
 
+  if (isLoading) {
+    return <LoadingScreen></LoadingScreen>;
+  }
+
+  if (!validCode) {
+    return (
+      <div className="min-h-[calc(100vh-200px)] flex items-center justify-center bg-gray-100 p-4">
+        <div className="text-center">
+          <h1 className="text-3xl font-extrabold text-gray-900">Invalid Registration Code</h1>
+          <p className="mt-2 text-sm text-gray-600 mb-12">
+            Please enter a valid registration code.
+          </p>
+          <div className="flex items-center gap-2 justify-center text-gray-900">
+            <Link
+              href="/register"
+              className="mt-4 inline-block text-white hover:text-gray-100 font-medium px-10 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg transition"
+            >
+              Try Again
+            </Link>
+            <Link
+              href="/"
+              className="mt-4 ml-4 inline-block text-gray-600 hover:text-gray-500 font-medium px-10 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition"
+            >
+              Home
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4 antialiased">
       {/* Registration Card Container */}
@@ -1004,8 +1084,9 @@ export default function App() {
         </div>
       </div>
 
-      {/* Render Toast Notification */}
-      <ToastNotification toast={toast} setToast={setToast} />
+      {toast && (
+        <ToastNotification type={toast?.type} message={toast?.message} onClose={handleToastClose} />
+      )}
     </div>
   );
 }

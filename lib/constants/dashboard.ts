@@ -8,6 +8,7 @@ import {
   MessageSquare,
   ClipboardCheck,
   User,
+  ShieldCheck,
 } from "lucide-react";
 
 export interface MenuItem {
@@ -19,6 +20,7 @@ export interface MenuItem {
 export interface DashboardMenuConfig {
   member: MenuItem[];
   admin: MenuItem[];
+  [key: string]: MenuItem[];
 }
 
 export const DASHBOARD_MENU: DashboardMenuConfig = {
@@ -31,10 +33,33 @@ export const DASHBOARD_MENU: DashboardMenuConfig = {
   admin: [
     { key: "overview", label: "Admin Overview", icon: LayoutDashboard },
     { key: "members", label: "Members & Apps", icon: Users },
-    { key: "events", label: "Events & Content", icon: Calendar },
+    { key: "manage-events", label: "Events & Content", icon: Calendar },
+    { key: "roles-and-invitation", label: "Administration", icon: ShieldCheck },
     { key: "assets", label: "Assets & Inventory", icon: HardHat },
     { key: "sponsors", label: "Sponsors & Finance", icon: DollarSign },
     { key: "messages", label: "Contact Messages", icon: MessageSquare },
     { key: "site-settings", label: "Global Settings", icon: Settings },
+  ],
+  moderator: [
+    { key: "overview", label: "Admin Overview", icon: LayoutDashboard },
+    { key: "members", label: "Members & Apps", icon: Users },
+    { key: "manage-events", label: "Events & Content", icon: Calendar },
+    { key: "roles-and-invitation", label: "Administration", icon: ShieldCheck },
+    { key: "assets", label: "Assets & Inventory", icon: HardHat },
+    { key: "sponsors", label: "Sponsors & Finance", icon: DollarSign },
+    { key: "messages", label: "Contact Messages", icon: MessageSquare },
+    { key: "site-settings", label: "Global Settings", icon: Settings },
+  ],
+  alumni: [
+    { key: "activity", label: "My Activity", icon: LayoutDashboard },
+    { key: "certificates", label: "Certificates", icon: ClipboardCheck },
+    { key: "events", label: "Upcoming Events", icon: Calendar },
+    { key: "profile", label: "Profile Settings", icon: User },
+  ],
+  guest: [
+    { key: "activity", label: "My Activity", icon: LayoutDashboard },
+    { key: "certificates", label: "Certificates", icon: ClipboardCheck },
+    { key: "events", label: "Upcoming Events", icon: Calendar },
+    { key: "profile", label: "Profile Settings", icon: User },
   ],
 };

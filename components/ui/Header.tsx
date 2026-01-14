@@ -24,6 +24,7 @@ import {
   FaUserPlus,
   FaSignInAlt,
 } from "react-icons/fa";
+import { useAuth } from "@/lib/context/AuthContext";
 
 const aboutMegaMenu = [
   {
@@ -73,8 +74,6 @@ const eventsMegaMenu = [
   },
 ];
 
-// removed Projects menu
-
 const resourcesMegaMenu = [
   {
     label: "Tutorials",
@@ -90,13 +89,6 @@ const resourcesMegaMenu = [
     description: "Latest updates",
     iconBgColor: "bg-purple-50 dark:bg-purple-900/30",
   },
-  // {
-  //   label: "Repositories",
-  //   route: "https://github.com/meccomputerclub",
-  //   icon: <FaGlobe className="text-green-600" />,
-  //   description: "Code and resources",
-  //   iconBgColor: "bg-green-50 dark:bg-green-900/30",
-  // },
 ];
 
 const galleryMegaMenu = [
@@ -150,11 +142,31 @@ const joinClubSubMenu = [
   },
 ];
 
-// legacy names replaced by club menus
+const userProfileSubMenu = (logout: () => void): SubmenuItem[] => [
+  {
+    label: "Profile",
+    route: "/profile", // Assuming your user profile route is /profile
+    icon: <FaUsers className="text-blue-600" />,
+    description: "View your member dashboard",
+    iconBgColor: "bg-blue-50 dark:bg-blue-900/30",
+  },
+  {
+    label: "Logout",
+    route: "#", // Add a placeholder route as required by SubmenuItem interface
+    onClick: logout,
+    icon: <FaSignInAlt className="text-red-600 rotate-180" />,
+    description: "Sign out of your account",
+    iconBgColor: "bg-red-50 dark:bg-red-900/30",
+  },
+];
 
-type MenuItem = { label: string; submenu: SubmenuItem[] } | { label: string; route: string };
+type MenuItem =
+  | { label: string | React.ReactNode; submenu: SubmenuItem[] }
+  | { label: string; route: string };
 
-function hasSubmenu(item: MenuItem): item is { label: string; submenu: SubmenuItem[] } {
+function hasSubmenu(
+  item: MenuItem
+): item is { label: string | React.ReactNode; submenu: SubmenuItem[] } {
   return "submenu" in item;
 }
 
@@ -196,11 +208,52 @@ const mobileMenus: MenuItem[] = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isDark } = useDarkMode();
+  const { user, logout, isLoading } = useAuth();
+  const DEFAULT_AVATAR_URL =
+    "https://res.cloudinary.com/dkhyilarh/image/upload/v1763636489/users_pp/md-nasir-ahmed-mi7bmnst-r3vy1b.webp";
+  // Initialize imageSrc with a default value or the user's current value
+  const [imageSrc, setImageSrc] = useState(user?.imageUrl || DEFAULT_AVATAR_URL);
   const mobileNavRef = useRef<HTMLDivElement>(null);
   const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
   const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState<{
     [key: string]: boolean;
   }>({});
+
+  // Effect to sync imageSrc state when user object changes
+  useEffect(() => {
+    if (user?.imageUrl) {
+      setImageSrc(user.imageUrl);
+    } else {
+      setImageSrc(DEFAULT_AVATAR_URL);
+    }
+  }, [user?.imageUrl]);
+
+  // Logic to update the LAST item in mobileMenus array to show user profile/logout
+  if (user) {
+    mobileMenus[6] = {
+      label: "Dashboard",
+      route: "/dashboard",
+    };
+    mobileMenus[7] = {
+      label: (
+        <div className="flex items-center gap-2 cursor-pointer">
+          {user && (
+            <Image
+              // Use the state variable for the source
+              src={imageSrc}
+              alt="User Profile"
+              width={32}
+              height={32}
+              className="rounded-full object-cover"
+              // When the image fails to load, update the state to the default path
+              onError={() => setImageSrc(DEFAULT_AVATAR_URL)}
+            />
+          )}
+        </div>
+      ),
+      submenu: userProfileSubMenu(logout),
+    };
+  }
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -223,13 +276,13 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full  bg-white dark:bg-[#181F2A] dark:text-white shadow-sm z-50 sticky top-0 left-0 p-1.5 md:p-3 transition-colors">
+    <header className="w-full bg-white dark:bg-[#181F2A] dark:text-white shadow-sm z-50 sticky top-0 left-0 p-1.5 md:p-3 transition-colors">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-2 ">
         {/* Logo */}
         <div className="flex items-center gap-2 ">
           <Link href="/">
             <Image
-              alt="FlexoHost Logo"
+              alt="MEC Computer Club Logo"
               src={isDark ? logoDark : logoLight}
               width={180}
               height={60}
@@ -299,29 +352,61 @@ export default function Header() {
                 <Menu {...item} />
               </li>
             ))}
+            {user !== null && (
+              <li>
+                <Menu label="Dashboard" route="/dashboard" />
+              </li>
+            )}
           </ul>
         </nav>
         {/* CTA Button */}
-        <div className="hidden md:flex items-center ml-6 gap-2 ">
-          {/* Option 1: Render the Sign-in/Register as a dropdown menu */}
-          <ul className="flex flex-row gap-8 px-0 py-0">
-            <li>
-              {/* Using the Menu component for the dropdown */}
-              <Menu
-                label="Join The Club"
-                submenu={joinClubSubMenu}
-                // You might need to add a custom class prop to the Menu component
-                // or style the element here if you want a button appearance
-                // instead of a standard text link.
-              />
-            </li>
-          </ul>
-
-          {/* Option 2: If you still want "Join the Club" as a button, 
-        but it links to the main /join page and the other links are in the dropdown: 
-        You could adjust the "Get Involved" link to be the button and move the 
-        Sign In link into the dropdown. But for simplicity, we stick to the dropdown.
-    */}
+        <div className="hidden md:flex items-center ml-6 gap-2">
+          {isLoading ? (
+            // Placeholder while authentication status is loading
+            <div className="w-24 h-8 bg-gray-200 dark:bg-gray-700 animate-pulse rounded-md" />
+          ) : user ? (
+            // Option 1: Logged-in User Profile Dropdown (Desktop)
+            <ul className="flex flex-row px-0 py-0">
+              <li>
+                <Menu
+                  // This is the custom trigger element for the Menu component
+                  label={
+                    <div className="flex items-center gap-2 cursor-pointer">
+                      {user && (
+                        <Image
+                          // Use the state variable for the source
+                          src={imageSrc}
+                          alt="User Profile"
+                          width={32}
+                          height={32}
+                          className="rounded-full object-cover"
+                          // When the image fails to load, update the state to the default path
+                          onError={() => setImageSrc(process.env.NEXT_PUBLIC_DEFAULT_AVATAR_URL!)}
+                        />
+                      )}
+                      <svg
+                        className="w-3 h-3 stroke-current text-[#00205B] dark:text-white"
+                        fill="none"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                  }
+                  submenu={userProfileSubMenu(logout)} // Pass logout function to create submenu
+                  isCustomTrigger={true} // A custom prop to tell Menu component to render 'label' as-is
+                />
+              </li>
+            </ul>
+          ) : (
+            // Option 2: Not Logged-in (Default Join The Club Menu)
+            <ul className="flex flex-row gap-8 px-0 py-0">
+              <li>
+                <Menu label="Join The Club" submenu={joinClubSubMenu} />
+              </li>
+            </ul>
+          )}
         </div>
       </div>
       {/* Mobile Overlay */}
@@ -330,15 +415,15 @@ export default function Header() {
       <div
         ref={mobileNavRef}
         className={`fixed top-0 left-0 z-50 h-full w-72 bg-white dark:bg-[#181F2A] shadow-lg transform transition-transform duration-300 md:hidden overflow-y-auto max-h-screen
-          ${menuOpen ? "translate-x-0" : "-translate-x-full"}
-        `}
+${menuOpen ? "translate-x-0" : "-translate-x-full"}
+ `}
         style={{ willChange: "transform" }}
       >
-        <div className="flex  items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-[#232B3E]">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-[#232B3E]">
           <div className="flex items-center gap-2 p-3">
             <Link href="/">
               <Image
-                alt="FlexoHost Logo"
+                alt="MEC Computer Club Logo"
                 src={isDark ? logoDark : logoLight}
                 width={130}
                 height={45}
@@ -364,15 +449,15 @@ export default function Header() {
         <nav className="flex flex-col gap-2 px-4 py-6">
           {mobileMenus.map((item) => {
             if (hasSubmenu(item)) {
-              const open = !!mobileSubmenuOpen[item.label];
+              const open = !!mobileSubmenuOpen[item.label as string]; // Cast to string if label can be ReactNode
               return (
-                <div key={item.label} className="mb-1">
+                <div key={item.label as string} className="mb-1">
                   <button
                     className="flex items-center w-full gap-2 py-2 px-2 text-[#00205B] dark:text-white font-medium hover:text-[#00AEEF] dark:hover:text-[#4F6DF5] focus:outline-none cursor-pointer transition-colors"
                     onClick={() =>
                       setMobileSubmenuOpen((prev) => ({
                         ...prev,
-                        [item.label]: !prev[item.label],
+                        [item.label as string]: !prev[item.label as string],
                       }))
                     }
                   >
@@ -390,8 +475,42 @@ export default function Header() {
                   </button>
                   {open && (
                     <div className="ml-4 border-l border-gray-200 dark:border-[#232B3E] pl-2 py-1">
-                      {item.submenu.map((sub) =>
-                        isExternalUrl(sub.route) ? (
+                      {item.submenu.map((sub) => {
+                        // FIX: Handle onClick action item (e.g., Logout)
+                        if (sub.onClick) {
+                          return (
+                            <button
+                              key={sub.label}
+                              onClick={() => {
+                                sub.onClick!();
+                                setMenuOpen(false); // Close mobile menu after action
+                              }}
+                              className="flex gap-2 items-center w-full text-left py-1.5 text-[#00205B] dark:text-white hover:text-[#00AEEF] dark:hover:text-[#4F6DF5] font-normal text-sm transition-colors"
+                            >
+                              {/* Content for action item (Logout) */}
+                              {sub.icon && (
+                                <div
+                                  className={`flex-shrink-0 w-8 h-8 rounded-md flex items-center justify-center ${
+                                    sub.iconBgColor || "bg-blue-50 dark:bg-blue-900/30"
+                                  }`}
+                                >
+                                  <div className="text-base">{sub.icon}</div>
+                                </div>
+                              )}
+                              <div className="flex-1 flex flex-col min-w-0">
+                                <span className="font-semibold text-sm">{sub.label}</span>
+                                {sub.description && (
+                                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                                    {sub.description}
+                                  </span>
+                                )}
+                              </div>
+                            </button>
+                          );
+                        }
+
+                        // Original logic for links
+                        return isExternalUrl(sub.route) ? (
                           <a
                             key={sub.label}
                             href={sub.route}
@@ -400,6 +519,7 @@ export default function Header() {
                             className="flex gap-2 items-center py-1.5 text-[#00205B] dark:text-white hover:text-[#00AEEF] dark:hover:text-[#4F6DF5] font-normal text-sm transition-colors"
                             onClick={() => setMenuOpen(false)}
                           >
+                            {/* Link content */}
                             {sub.icon && (
                               <div
                                 className={`flex-shrink-0 w-8 h-8 rounded-md flex items-center justify-center ${
@@ -425,6 +545,7 @@ export default function Header() {
                             className="flex gap-2 items-center py-1.5 text-[#00205B] dark:text-white hover:text-[#00AEEF] dark:hover:text-[#4F6DF5] font-normal text-sm transition-colors"
                             onClick={() => setMenuOpen(false)}
                           >
+                            {/* Link content */}
                             {sub.icon && (
                               <div
                                 className={`flex-shrink-0 w-8 h-8 rounded-md flex items-center justify-center ${
@@ -443,8 +564,8 @@ export default function Header() {
                               )}
                             </div>
                           </Link>
-                        )
-                      )}
+                        );
+                      })}
                     </div>
                   )}
                 </div>
@@ -474,14 +595,6 @@ export default function Header() {
             }
             return null;
           })}
-          {/* Mobile CTA Button */}
-          {/* <div className="mt-6">
-            <Link href="/register">
-              <span className="block w-full text-center px-6 py-2 rounded-lg font-bold text-primary-foreground bg-primary shadow hover:bg-secondary transition-colors">
-                Join the Club
-              </span>
-            </Link>
-          </div> */}
           {/* Contact Buttons Row */}
           <div className="flex flex-row items-center justify-center gap-4 mt-6 mb-4">
             <a

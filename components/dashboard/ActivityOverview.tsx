@@ -3,23 +3,22 @@ import React from "react";
 import { DashboardCard } from "@/components/dashboard/DashboardCard";
 import { ContentItemCard } from "@/components/dashboard/ContentItemCard";
 import { Calendar, ClipboardCheck, Monitor, CheckCircle } from "lucide-react";
-import { MOCK_USERS } from "@/lib/data/mockData";
+import { useAuth } from "@/lib/context/AuthContext";
 
-export default function ActivityPage() {
-  // In a real app, get the current user from auth context
-  const user = MOCK_USERS.find((u) => u.role === "member") || MOCK_USERS[1];
+export default function ActivityOverview() {
+  const { user } = useAuth();
 
   return (
     <div className="space-y-8">
       <h2 className="text-3xl font-semibold text-gray-900 dark:text-white border-b pb-3 border-gray-200 dark:border-gray-700">
-        Hello, {user.name.split(" ")[0]}! Your Club Activity
+        Hello, {user?.fullName.split(" ")[0]} {user?.fullName.split(" ")[1]}! Your Club Activity
       </h2>
 
       {/* Activity Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <DashboardCard
           title="Events Attended"
-          value={user.eventsAttended?.toString() || "0"}
+          value={user?.eventsAttended?.toString() || "0"}
           icon={Calendar}
           colorClass="text-blue-500"
         />
@@ -37,9 +36,9 @@ export default function ActivityPage() {
         />
         <DashboardCard
           title="Profile Status"
-          value={user.status}
-          icon={user.status === "Active" ? CheckCircle : CheckCircle}
-          colorClass={user.status === "Active" ? "text-green-600" : "text-red-600"}
+          value={user?.profileStatus}
+          icon={user?.profileStatus === "active" ? CheckCircle : CheckCircle}
+          colorClass={user?.profileStatus === "active" ? "text-green-600" : "text-red-600"}
         />
       </div>
 

@@ -1,13 +1,20 @@
 "use client";
 import React from "react";
-import { Code, LogOut } from "lucide-react";
 import type { MenuItem } from "@/lib/constants/dashboard";
+import Image from "next/image";
+import { useDarkMode } from "@/lib/DarkModeContext";
+import logoLight from "@/public/img/mecHorizontalDark.png";
+import logoDark from "@/public/img/mecHorizontalLight128.png";
+import Link from "next/link";
+import { LogOut } from "lucide-react";
+import { useAuth } from "@/lib/context/AuthContext";
+import { AuthUser } from "@/lib/types";
 
 interface DashboardSidebarProps {
   menu: MenuItem[];
   activeTab: string;
   onTabChange: (tab: string) => void;
-  role: "admin" | "member";
+  role: AuthUser["role"];
 }
 
 export const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
@@ -16,12 +23,20 @@ export const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
   onTabChange,
   role,
 }) => {
+  const { isDark } = useDarkMode();
+  const { logout } = useAuth();
   return (
     <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 z-30">
       {/* Logo */}
       <div className="p-6 flex items-center border-b border-gray-200 dark:border-gray-700">
-        <Code className="w-8 h-8 text-blue-600 dark:text-blue-400 mr-2" />
-        <span className="text-xl font-bold text-gray-900 dark:text-white">MEC Club</span>
+        <Link href="/">
+          <Image
+            alt="MEC Computer Club Logo"
+            src={isDark ? logoDark : logoLight}
+            width={180}
+            height={60}
+          ></Image>
+        </Link>
         <span
           className={`ml-2 px-2 py-0.5 text-xs font-medium rounded-full ${
             role === "admin"
@@ -59,7 +74,10 @@ export const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
 
       {/* Logout */}
       <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-        <button className="flex items-center w-full px-4 py-2 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/50 transition">
+        <button
+          className="flex items-center w-full px-4 py-2 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/50 transition"
+          onClick={() => logout()}
+        >
           <LogOut className="w-5 h-5 mr-3" />
           Logout
         </button>

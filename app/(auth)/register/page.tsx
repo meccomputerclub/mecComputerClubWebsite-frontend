@@ -31,14 +31,15 @@ export default function InvitationPage() {
       );
 
       const data = res.data;
+      console.log(data);
 
       if (res.status !== 200) {
         setError(data.message || "Invalid invitation code");
         setLoading(false);
         return;
       }
-
-      router.push("/form?formId=" + data.formId);
+      //will send formId and code
+      router.push("/register/form?formId=" + data.formId + "&code=" + inviteCode);
     } catch (err) {
       console.log("Error verifying invitation code:", err);
       setError("Something went wrong!");
